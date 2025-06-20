@@ -3,13 +3,16 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->call(SuppliersTableSeeder::class);
-        $this->call(ProductsTableSeeder::class);
-        $this->call(OrdersTableSeeder::class);
+            User::factory()->create([
+            'name' => 'Rong',
+            'email' => 'admin@gmail.com',
+        ]);
+
     }
 }
