@@ -45,7 +45,7 @@ class OrderController extends Controller
             'supplier_id' => 'required|exists:suppliers,id',
             'order_date' => 'required|date',
             'expected_delivery' => 'nullable|date',
-            'status' => 'required|in:Pending,Completed,Cancelled',
+            'status' => 'required|in:pending,completed,cancelled',
             'total' => 'required|numeric|min:0',
         ]);
 
@@ -85,7 +85,7 @@ class OrderController extends Controller
             'supplier_id' => 'sometimes|exists:suppliers,id',
             'order_date' => 'sometimes|date',
             'expected_delivery' => 'nullable|date',
-            'status' => 'sometimes|in:Pending,Completed,Cancelled',
+            'status' => 'sometimes|in:pending,completed,cancelled',
             'total' => 'sometimes|numeric|min:0',
         ]);
 
