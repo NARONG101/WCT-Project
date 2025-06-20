@@ -13,7 +13,7 @@ class OrderController extends Controller
      */
    public function index()
 {
-    $orders = Order::with(['suppliers', 'items'])->get();
+    $orders = Order::with(['supplier', 'items'])->get();
 
     // Count orders by status (case-sensitive, must match DB values)
     $pendingCount = $orders->where('status', 'pending')->count();
