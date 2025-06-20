@@ -16,8 +16,8 @@ class OrderController extends Controller
     $orders = Order::with(['supplier', 'items'])->get();
 
     // Count orders by status (case-sensitive, must match DB values)
-    $pendingCount = $orders->where('status', 'Pending')->count();
-    $completedCount = $orders->where('status', 'Completed')->count();
+    $pendingCount = $orders->where('status', 'pending')->count();
+    $completedCount = $orders->where('status', 'completed')->count();
 
     // Just for debugging - temporarily uncomment this line to check values:
     // dd($pendingCount, $completedCount);
