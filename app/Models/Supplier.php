@@ -1,19 +1,19 @@
 <?php
+
 namespace App\Models;
 
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
     protected $fillable = [
         'name',
-        'contact',
+        'contact',         // <-- Add this line
+        'contact_person',
+        'email',
+        'phone',
         'address',
         'item_type',
-        'quantity',
-        'price',
-        // 'total_price',
     ];
 
     public function orders()
@@ -30,5 +30,4 @@ class Supplier extends Model
     {
         return $this->hasMany(SupplierCommunication::class);
     }
-    
 }
