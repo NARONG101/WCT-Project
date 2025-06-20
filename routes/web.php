@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 
-
 // Auth routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);

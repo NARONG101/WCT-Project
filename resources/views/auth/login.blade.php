@@ -66,10 +66,6 @@
             </div>
 
             <!-- Register Link -->
-            <div class="text-center text-sm text-gray-600">
-                Don’t have an account?
-                <a href="{{ route('register') }}" class="text-indigo-600 hover:underline">Register here</a>
-            </div>
         </form>
     </div>
 

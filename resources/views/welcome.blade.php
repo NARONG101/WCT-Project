@@ -305,9 +305,6 @@
                     <a href="{{route('login')}}" class="btn btn-login">
                         <i class="fas fa-sign-in-alt"></i> Log in
                     </a>
-                    <a href="{{route('register')}}" class="btn btn-register">
-                        <i class="fas fa-user-plus"></i> Register
-                    </a>
                 </div>
             </div>
             
