@@ -9,9 +9,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-            User::factory()->create([
+             User::create([
             'name' => 'Rong',
             'email' => 'admin@gmail.com',
+            'password' => '12345678',
         ]);
 
     }
