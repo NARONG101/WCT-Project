@@ -20,34 +20,12 @@
     </div>
 
     <div>
-      <label for="contact_person" class="block text-sm font-medium text-gray-700 mb-1">Contact Person</label>
-      <input type="text" name="contact_person" id="contact_person"
-             value="{{ old('contact_person') }}"
+      <label for="contact" class="block text-sm font-medium text-gray-700 mb-1">Contact</label>
+      <input type="text" name="contact" id="contact"
+             value="{{ old('contact') }}"
              class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-             placeholder="e.g. John Doe">
-      @error('contact_person')
-        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-      @enderror
-    </div>
-
-    <div>
-      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-      <input type="email" name="email" id="email"
-             value="{{ old('email') }}"
-             class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-             placeholder="example@email.com">
-      @error('email')
-        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-      @enderror
-    </div>
-
-    <div>
-      <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-      <input type="text" name="phone" id="phone"
-             value="{{ old('phone') }}"
-             class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-             placeholder="e.g. 012345678">
-      @error('phone')
+             placeholder="Phone number or email">
+      @error('contact')
         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
       @enderror
     </div>
@@ -62,6 +40,7 @@
       @enderror
     </div>
 
+    <!-- New Item Type field -->
     <div>
       <label for="item_type" class="block text-sm font-medium text-gray-700 mb-1">Item Type</label>
       <input type="text" name="item_type" id="item_type"
