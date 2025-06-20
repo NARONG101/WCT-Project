@@ -35,8 +35,8 @@
                     <td class="border border-gray-300 px-4 py-2">{{ $order->order_date->format('Y-m-d') }}</td>
                     <td class="border border-gray-300 px-4 py-2">
                         <span class="inline-block px-2 py-1 rounded text-white text-xs font-semibold
-                            @if (strtolower($order->status) === 'completed') bg-green-500
-                            @elseif (strtolower($order->status) === 'pending') bg-yellow-500
+                            @if ($order->status === 'completed') bg-green-500
+                            @elseif ($order->status === 'pending') bg-yellow-500
                             @else bg-gray-400 @endif">
                             {{ ucfirst($order->status) }}
                         </span>

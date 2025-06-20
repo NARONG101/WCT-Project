@@ -11,20 +11,16 @@ class OrderController extends Controller
     /**
      * Display a listing of orders with supplier and items eager loaded.
      */
-   public function index()
-{
-    $orders = Order::with(['supplier', 'items'])->get();
+    public function index()
+    {
+        $orders = Order::with(['supplier', 'items'])->get();
 
-    // Count orders by status (case-sensitive, must match DB values)
-    $pendingCount = $orders->where('status', 'pending')->count();
-    $completedCount = $orders->where('status', 'completed')->count();
+        // Count orders by status
+        $pendingCount = $orders->where('status', 'pending')->count();
+        $completedCount = $orders->where('status', 'completed')->count();
 
-    // Just for debugging - temporarily uncomment this line to check values:
-    // dd($pendingCount, $completedCount);
-
-    return view('orders.index', compact('orders', 'pendingCount', 'completedCount'));
-}
-
+        return view('orders.index', compact('orders', 'pendingCount', 'completedCount'));
+    }
 
     /**
      * Show the form for creating a new order.
@@ -41,7 +37,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'order_number' => 'required|string|max:255',
+            // Remove manual input — generate below
             'supplier_id' => 'required|exists:suppliers,id',
             'order_date' => 'required|date',
             'expected_delivery' => 'nullable|date',
@@ -49,13 +45,20 @@ class OrderController extends Controller
             'total' => 'required|numeric|min:0',
         ]);
 
+        // Auto-generate unique order_number
+        $latestOrderNumber = Order::max('order_number');
+        $validated['order_number'] = $latestOrderNumber ? $latestOrderNumber + 1 : 1;
+
+        // Ensure status is stored lowercase
+        $validated['status'] = strtolower($validated['status']);
+
         Order::create($validated);
 
         return redirect()->route('orders.index')->with('success', 'Order created successfully.');
     }
 
     /**
-     * Display the specified order with supplier and items.
+     * Display the specified order.
      */
     public function show($id)
     {
@@ -89,6 +92,10 @@ class OrderController extends Controller
             'total' => 'sometimes|numeric|min:0',
         ]);
 
+        if (isset($validated['status'])) {
+            $validated['status'] = strtolower($validated['status']);
+        }
+
         $order->update($validated);
 
         return redirect()->route('orders.index')->with('success', 'Order updated successfully.');
@@ -100,7 +107,6 @@ class OrderController extends Controller
     public function destroy($id)
     {
         Order::findOrFail($id)->delete();
-
         return redirect()->route('orders.index')->with('success', 'Order deleted.');
     }
 }
